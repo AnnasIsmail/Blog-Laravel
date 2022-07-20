@@ -27,3 +27,5 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/detailPost{slug}', [PostController::class, 'find']);

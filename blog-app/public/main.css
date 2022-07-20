@@ -4,4 +4,17 @@ html,body{
 
 .is-active{
     font-weight: bold !important;
+    color: #00d1b2 !important;
+}
+
+.navbar-logo{
+    padding: 0 10px !important; 
+}
+
+.logo-navbar{
+    height: 30px !important;  
+}
+
+.container{
+    padding: 30px;
 }

@@ -13,4 +13,11 @@ class PostController extends Controller
             "posts" => Post::all()
         ]);
     }
+
+    public function find($slug){
+        return view('detailPost', [
+            "title" => "Detail Post",
+            "post" => Post::index($slug)
+        ]);
+    }
 }

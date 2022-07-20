@@ -3,9 +3,15 @@
 @section('container')
 
     @foreach ($posts as $post)
-        <h1 class="title is-2" >{{ $post['title'] }}</h1>
-        <h3 class="title is-4" >{{ $post['author'] }}</h3>
-        <p class="subtitle is-5" >{{ $post['body'] }}</p>
+    <article class="message is-primary">
+        <div class="message-header">
+            <a href="detailPost{{ $post['slug'] }}">{{ $post['title'] }}</a>
+            <a>{{ $post['author'] }}</a>
+        </div>
+        <div class="message-body">
+            <p class="subtitle is-5" >{{ $post['body'] }}</p>
+        </div>
+    </article>
     @endforeach
 
 @endsection
