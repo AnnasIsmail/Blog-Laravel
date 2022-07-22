@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('body');
             $table->timestamp('publish_at')->nullable();
             $table->timestamps();
+            
         });
     }
 
