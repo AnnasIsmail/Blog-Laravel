@@ -54,7 +54,15 @@ Route::get('/category/{category:slug}', function(Category $category){
 
 Route::get('/authors', function(){
     return view('authors', [
-        'title' => 'Author',
+        'title' => 'Authors',
         'authors' => User::all()
+    ]);
+});
+
+Route::get('/author/{user:username}', function(User $user){
+    return view('author', [
+        'title' => 'Author',
+        'name' => $user->name,
+        'posts' => $user->post
     ]);
 });

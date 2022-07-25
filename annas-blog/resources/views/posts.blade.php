@@ -13,7 +13,11 @@
                 {{ $post->category->name }}
             </a>
         </h5>
-        <h5>{{ $post->author }}</h5>
+        <h5>
+            Author <a class="text-decoration-none" href="/author/{{ $post->user->username }}">
+                {{ $post->user->name }}
+            </a>
+        </h5>
         <p>{{ $post->excerpt }}</p>
         <a href="/posts/{{ $post->slug }}">Read more...</a>
     </article>

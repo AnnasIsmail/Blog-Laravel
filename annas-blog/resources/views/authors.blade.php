@@ -6,7 +6,7 @@
     @foreach ($authors as $author)
     <article class="mb-4 border-bottom pt-10">
         <h2>
-            <a href="">
+            <a href="/author/{{ $author->username }}">
                 {{ $author->name }}
             </a>
         </h2>
