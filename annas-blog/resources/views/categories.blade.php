@@ -3,16 +3,20 @@
 
 @section('container')
 
-<h2>{{ $title }}</h2>
+<h2 class="mb-3">{{ $title }}</h2>
 
-    @foreach ($categories as $category)
-    <article class="mb-2">
-        <h5>
-            <a href="/category/{{ $category->slug }}">
-                {{ $category->name }}
-            </a>
-        </h5>
-    </article>
-    @endforeach
+    <ul>
+        @foreach ($categories as $category)
+        <li>
+            <article class="mb-2">
+                <h5>
+                    <a href="/category/{{ $category->slug }}">
+                        {{ $category->name }}
+                    </a>
+                </h5>
+            </article>
+        </li>
+        @endforeach
+    </ul>
 
 @endsection
