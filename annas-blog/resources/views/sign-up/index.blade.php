@@ -38,7 +38,7 @@
               <div class="form-floating">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="floatingPassword" placeholder="Password" value="{{ old('password') }}" required>
                 <label for="floatingPassword">Password</label>
-                @error('email')
+                @error('password')
                   <div class="text-danger">
                     {{ $message }}
                   </div>

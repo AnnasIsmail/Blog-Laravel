@@ -77,6 +77,7 @@ Route::get('/author/{user:username}', function(User $user){
 });
 
 Route::get('/sign-in', [SignInController::class, 'index']);
+Route::get('/sign-in', [SignInController::class, 'authenticate']);
 
 Route::get('/sign-up', [SignUpController::class, 'index']);
 Route::post('/sign-up', [SignUpController::class, 'store']);

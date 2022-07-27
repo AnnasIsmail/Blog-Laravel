@@ -20,12 +20,12 @@ class SignUpController extends Controller
         $validationData = $request->validate([
             'name' => 'required|max:255',
             'username' => ['required', 'min:8', 'max:20', 'unique:users'],
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users|email:dns',
             'password' => 'required|min:5|max:20'
         ]); 
 
         // $validationData['password'] = bcrypt($validationData['password']);
-        
+
         $validationData['password'] = Hash::make($validationData['password']);
 
         User::create($validationData);
