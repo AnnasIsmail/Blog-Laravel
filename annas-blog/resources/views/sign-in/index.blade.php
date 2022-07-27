@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
 
     <div class="col-md-4">
-        
+
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
                 {{ session('success') }}
@@ -14,7 +14,7 @@
         @endif
 
         <main class="form-signin w-100 m-auto">
-            <form>
+            <form action="/login" method="post">
               <h1 class="h3 mb-3 fw-normal text-center mb-4 mt-4">Please Sign In</h1>
               <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
