@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
         <div class="container">
           <a class="navbar-brand" href="/">Annas Blog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,14 @@
                 <a class="nav-link {{ ($title === "About")? 'active' : '' }}" href="/about">About</a>
               </li>
             </ul>
+            <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link {{ ($title === "Sign In")? 'active' : '' }}" href="/sign-in">Sign In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ ($title === "Sign Up")? 'active' : '' }}" href="/sign-up">Sign Up</a>
+                  </li>
+              </ul>
           </div>
         </div>
       </nav>

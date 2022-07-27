@@ -3,15 +3,29 @@
 
 @section('container')
 
+<form action="/authors">
+    <div class="input-group mb-3 mt-3">
+        <input type="text" name="search" class="form-control" placeholder="Search Author..." aria-label="Recipient's username" aria-describedby="button-addon2" value="{{ request('search') }}">
+        <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
+    </div>
+</form>
+
+<div class="container-posts">
     @foreach ($authors as $author)
-    <article class="mb-4 border-bottom pt-10">
-        <h2>
-            <a href="/author/{{ $author->username }}">
-                {{ $author->name }}
-            </a>
-        </h2>
-        <p>{{ $author->email }}</p>
-    </article>
+
+    <div class="card mb-4">
+        <img src="https://source.unsplash.com/1200x800?people" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ $author->name }}</h5>
+            <p class="card-text">{{ $author->email }}</p>
+            <a href="/posts?author={{ $author->username }}">See All Posts</a>
+        </div>
+    </div>
     @endforeach
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    {{ $authors->links() }}
+</div>
 
 @endsection

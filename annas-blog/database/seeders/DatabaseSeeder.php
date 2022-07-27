@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        Post::factory(50)->create();
+        \App\Models\User::factory(20)->create();
+        Post::factory(100)->create();
         // User::create([
         //     'name' => 'Annas Ismail Muhammad',
         //     'email' => 'annasismailmuhammad@gmail.com',
@@ -47,6 +47,37 @@ class DatabaseSeeder extends Seeder
             'name' => 'Web Design',
             'slug' => 'web-design'
         ]);
+
+        Category::create([
+            'name' => 'Architecture',
+            'slug' => 'architecture'
+        ]);
+
+        Category::create([
+            'name' => 'Interiors',
+            'slug' => 'interiors'
+        ]);
+
+        Category::create([
+            'name' => 'Street Photography',
+            'slug' => 'street-photography'
+        ]);
+
+        Category::create([
+            'name' => 'Spirituality',
+            'slug' => 'spirituality'
+        ]);
+
+        Category::create([
+            'name' => 'Health & Wellness',
+            'slug' => 'health-&-wellness'
+        ]);
+
+        Category::create([
+            'name' => 'Arts & Culture',
+            'slug' => 'arts-&-culture'
+        ]);
+
 
         // Post::create([
         //     'title' => 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo',

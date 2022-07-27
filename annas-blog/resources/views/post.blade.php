@@ -1,22 +1,21 @@
-
+pp
 @extends('layout.layout')
 
 @section('container')
 
-    <article>
-        <h2>{{ $post->title }}</h2>
-        <h5>{{ $post->author }}</h5>
+    <div class="card mb-4">
+        <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h2 class="card-title">{{ $post->title }}</h2>
         <h5>
-            Category Post <a class="text-decoration-none" href="/category/{{ $post->category->slug }}">
-                {{ $post->category->name }}
-            </a>
+            Category <a class="text-decoration-none" href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
         </h5>
         <h5>
-            Author <a class="text-decoration-none" href="/author/{{ $post->user->username }}">
-                {{ $post->user->name }}
-            </a>
+            Author <a class="text-decoration-none" href="/posts?author={{ $post->user->username }}">{{ $post->user->name }}</a>
         </h5>
-        {!! $post->body !!}
-    </article>
+        <p class="card-text">{!! $post->body !!}</p>
+        <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
+        </div>
+    </div>
 
 @endsection

@@ -5,6 +5,8 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SignInController;
+use App\Http\Controllers\SignUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +55,16 @@ Route::get('/category/{category:slug}', function(Category $category){
 });
 
 Route::get('/authors', function(){
+
+    $user = User::latest();
+    $search = request('search');
+    if(request('search')){
+        $user->where('name', 'like', '%' . $search . '%')->orWhere('username', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%');
+    }
+
     return view('authors', [
         'title' => 'Authors',
-        'authors' => User::all()
+        'authors' => $user->paginate(9)->withQueryString()
     ]);
 });
 
@@ -66,3 +75,8 @@ Route::get('/author/{user:username}', function(User $user){
         'posts' => $user->post->load('category')
     ]);
 });
+
+Route::get('/sign-in', [SignInController::class, 'index']);
+
+Route::get('/sign-up', [SignUpController::class, 'index']);
+Route::post('/sign-up', [SignUpController::class, 'store']);
