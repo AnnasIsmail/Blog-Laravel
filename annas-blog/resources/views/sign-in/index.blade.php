@@ -5,6 +5,7 @@
 <div class="row justify-content-center">
 
     <div class="col-md-4">
+        
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
                 {{ session('success') }}
