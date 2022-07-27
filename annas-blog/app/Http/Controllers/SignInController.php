@@ -15,9 +15,12 @@ class SignInController extends Controller
     }
 
     public function authenticate(Request $request){
+
         $validationData = $request->validate([
             'username' => ['required', 'min:8', 'max:20', 'unique:users'],
             'password' => 'required|min:5|max:20'
         ]); 
+
+        
     }
 }
