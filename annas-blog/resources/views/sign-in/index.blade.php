@@ -13,6 +13,13 @@
             </div>
         @endif
 
+        @if (session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
         <main class="form-signin w-100 m-auto">
             <form action="/sign-in" method="post">
                 @csrf
@@ -27,7 +34,7 @@
                   @enderror
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="mb-0 form-control @error('password') is-invalid @enderror" id="password" placeholder="Password" required value="{{ old('password') }}">
+                    <input type="password" name="password" class="mb-0 form-control @error('password') is-invalid @enderror" id="password" placeholder="Password" required >
                     <label for="password">Password</label>
                     @error('password')
                     <div class="text-danger">

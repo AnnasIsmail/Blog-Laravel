@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,8 +77,11 @@ Route::get('/author/{user:username}', function(User $user){
     ]);
 });
 
-Route::get('/sign-in', [SignInController::class, 'index']);
+Route::get('/sign-in', [SignInController::class, 'index'])->middleware('guest');
 Route::post('/sign-in', [SignInController::class, 'authenticate']);
+Route::post('/log-out', [SignInController::class, 'logout']);
 
 Route::get('/sign-up', [SignUpController::class, 'index']);
 Route::post('/sign-up', [SignUpController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
+
 class SignInController extends Controller
 {
     public function index(){
@@ -16,11 +18,17 @@ class SignInController extends Controller
 
     public function authenticate(Request $request){
 
-        $validationData = $request->validate([
-            'username' => ['required', 'min:8', 'max:20', 'unique:users'],
-            'password' => 'required|min:5|max:20'
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
         ]); 
 
-        
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->with('loginError', 'Login Failed!');
+
     }
 }
