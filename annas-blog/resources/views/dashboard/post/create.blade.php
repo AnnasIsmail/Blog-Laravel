@@ -7,32 +7,60 @@
         </div>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <form action="/dashboard/posts" method="post">
         @csrf
         
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Title</label>
-          <input type="text" class="form-control is-invalid" id="title" name="title">
+          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" autofocus value="{{ old('title') }}">
+
+          @error('title')
+            <div class="text-danger">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Slug</label>
-            <input type="text" class="form-control" id="slug" name="slug" readonly>
+            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" readonly value="{{ old('slug') }}">
+            
+            @error('slug')
+                <div class="text-danger">
+                {{ $message }}
+                </div>
+            @enderror
           </div>
        
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Category</label>
             <select class="form-select" name="category_id" aria-label="Default select example">
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @if (old('category_id') == $category->id)
+                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                    @else
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endif
                 @endforeach
             </select>
           </div>
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Body</label>
-            <input id="x" type="hidden" name="body">
+            <input id="x" type="hidden" value="{{ old('body') }}" name="body">
             <trix-editor input="x"></trix-editor>
+            @error('body')
+                <div class="text-danger">
+                {{ $message }}
+                </div>
+            @enderror
           </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
 {
@@ -44,8 +45,16 @@ class DashboardPostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'body' => 'required'
         ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        Post::create($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'Post Success Added.');
     }
 
     /**

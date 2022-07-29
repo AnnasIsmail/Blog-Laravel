@@ -28,10 +28,10 @@
                     <input type="name" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" autofocus required value="{{ old('username') }}">
                     <label for="username">Username</label>
                     @error('username')
-                    <div class="text-danger">
-                      {{ $message }}
-                    </div>
-                  @enderror
+                      <div class="text-danger">
+                        {{ $message }}
+                      </div>
+                    @enderror
                 </div>
                 <div class="form-floating">
                     <input type="password" name="password" class="mb-0 form-control @error('password') is-invalid @enderror" id="password" placeholder="Password" required >
