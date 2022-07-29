@@ -48,7 +48,7 @@
 
           <div class="mb-3">
             <label for="image" class="form-label">Image Post</label>
-            <input class="form-control" type="file" id="image" name="image" >
+            <input class="form-control @error('slug') is-invalid @enderror" type="file" id="image" name="image" >
           </div>
 
           <div class="mb-3">
