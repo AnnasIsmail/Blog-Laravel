@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,11 +77,18 @@ Route::get('/author/{user:username}', function(User $user){
     ]);
 });
 
-Route::get('/sign-in', [SignInController::class, 'index'])->middleware('guest');
-Route::post('/sign-in', [SignInController::class, 'authenticate']);
-Route::post('/log-out', [SignInController::class, 'logout']);
+Route::get('/sign-in', [SignInController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/sign-in', [SignInController::class, 'authenticate'])->middleware('guest');
+Route::post('/log-out', [SignInController::class, 'logout'])->middleware('auth');
 
-Route::get('/sign-up', [SignUpController::class, 'index']);
-Route::post('/sign-up', [SignUpController::class, 'store']);
+Route::get('/sign-up', [SignUpController::class, 'index'])->middleware('guest');
+Route::post('/sign-up', [SignUpController::class, 'store'])->middleware('guest');
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', function(){
+    return view('dashboard.index', [
+        'title' => 'Dashboard'
+    ]);
+})->middleware('auth');
+
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

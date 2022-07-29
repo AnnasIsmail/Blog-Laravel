@@ -30,10 +30,10 @@
             Hello, {{ auth()->user()->name }}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+            <li><a class="dropdown-item" href="/dashboard">My Dashboard</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
-              <form action="">
+              <form action="/log-out" method="post">
                 @csrf
                 <button type="submit" class="dropdown-item">Log Out</button>
               </form>

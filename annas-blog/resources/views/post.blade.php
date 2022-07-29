@@ -1,4 +1,3 @@
-pp
 @extends('layout.layout')
 
 @section('container')
