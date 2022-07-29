@@ -15,8 +15,14 @@
         <p class="card-text"></p>
         <div class="d-flex gap-4 border-dark mt-2">
             <a href="/dashboard/posts" class="text-decoration-none"> <h6><span data-feather="arrow-left" class="align-text-bottom link"></span> Back My Posts</h6></a>
-            <a href="" class="text-decoration-none"> <h6><span data-feather="edit" class="align-text-bottom link"></span> Edit Post</h6></a>
-            <a href="" class="text-decoration-none"> <h6><span data-feather="trash-2" class="align-text-bottom link"></span> Remove Post</h6></a>
+            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="text-decoration-none"> <h6><span data-feather="edit" class="align-text-bottom link"></span> Edit Post</h6></a>
+            <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="border-0 bg-transparent px-0" onclick="return confirm('Are you sure?')">
+                    <a href="#" class="text-decoration-none"> <h6><span data-feather="trash-2" class="align-text-bottom link"></span> Remove Post</h6></a>
+                </button>
+            </form>
         </div>
 
         <p class="card-text">{!! $post->body !!}</p>

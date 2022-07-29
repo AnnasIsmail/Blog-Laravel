@@ -8,12 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../../../dashboard.css">
 
     <link rel="stylesheet" type="text/css" href="trix.css">
     <script type="text/javascript" src="trix.js"></script>
     <link rel="stylesheet" type="text/css" href="../../trix.css">
     <script type="text/javascript" src="../../trix.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="../../../trix.css">
+    <script type="text/javascript" src="../../../trix.js"></script>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -99,5 +101,6 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="dashboard.js"></script>
     <script src="../../dashboard.js"></script>
+    <script src="../../../dashboard.js"></script>
   </body>
 </html>

@@ -1,6 +1,15 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+
+
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">My Posts</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -30,8 +39,14 @@
                         <td>{{ $post->category->name }}</td>
                         <td>
                             <a href="/dashboard/posts/{{ $post->slug }}"><span data-feather="eye" class="align-text-bottom link"></span></a>
-                            <a href="" class=" px-2"><span data-feather="edit" class="align-text-bottom link"></span></a>
-                            <a href=""><span data-feather="trash-2" class="align-text-bottom link"></span></a>
+                            <a href="/dashboard/posts/{{ $post->slug }}/edit" class=" px-2"><span data-feather="edit" class="align-text-bottom link"></span></a>
+                            <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="border-0 bg-transparent px-0" onclick="return confirm('Are you sure?')">
+                                    <a href="#"><span data-feather="trash-2" class="align-text-bottom link"></span></a>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
