@@ -16,6 +16,7 @@
     <script type="text/javascript" src="../../trix.js"></script>
     <link rel="stylesheet" type="text/css" href="../../../trix.css">
     <script type="text/javascript" src="../../../trix.js"></script>
+    
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
