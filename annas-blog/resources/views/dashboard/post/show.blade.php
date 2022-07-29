@@ -3,7 +3,11 @@
 @section('container')
 
     <div class="card my-4 ">
-        <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}" class="card-img-top max-h-32" alt="...">
+        @if ($post->image)
+            <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top max-h-32" alt="...">
+        @else
+            <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}" class="card-img-top max-h-32" alt="...">
+        @endif
         <div class="card-body">
         <h2 class="card-title">{{ $post->title }}</h2>
         <h5>
