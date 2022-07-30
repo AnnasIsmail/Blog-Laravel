@@ -8,7 +8,7 @@
     </div>
 
 
-    <form action="/dashboard/posts/{{ $post->slug }}" method="post">
+    <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="mb-4" enctype="multipart/form-data">
         @method('put')
         @csrf
         
@@ -48,6 +48,16 @@
           </div>
 
           <div class="mb-3">
+            <label for="image" class="form-label">Image Post</label>
+            @if ($post->image)
+                <img class="img-preview img-fluid mb-3 col-sm-5 d-block" src="{{ asset('storage/' . $post->image) }}" alt="...">
+            @else
+                <img class="img-preview img-fluid mb-3 col-sm-5">
+            @endif
+            <input class="form-control @error('slug') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+          </div>
+
+          <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Body</label>
             <input id="x" type="hidden" value="{{ old('body' , $post->body) }}" name="body">
             <trix-editor input="x"></trix-editor>
@@ -70,6 +80,21 @@
                 preslug = preslug.replace(/ /g,"-");
                 slug.value = preslug.toLowerCase();
             });
+
+            function previewImage(){
+                const image = document.querySelector('#image');
+                const imgPreview = document.querySelector('.img-preview');
+
+                imgPreview.style.display = 'block';
+
+                const ofReader = new FileReader();
+                ofReader.readAsDataURL(image.files[0]);
+
+                ofReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+              }
+
+            }
       </script>
 
 @endsection

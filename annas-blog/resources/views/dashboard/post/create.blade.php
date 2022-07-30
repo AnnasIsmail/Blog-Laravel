@@ -8,7 +8,7 @@
     </div>
 
 
-    <form action="/dashboard/posts" method="post" enctype="multipart/form-data">
+    <form action="/dashboard/posts" method="post" class="mb-4" enctype="multipart/form-data">
         @csrf
         
         <div class="mb-3">
@@ -48,7 +48,8 @@
 
           <div class="mb-3">
             <label for="image" class="form-label">Image Post</label>
-            <input class="form-control @error('slug') is-invalid @enderror" type="file" id="image" name="image" >
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input class="form-control @error('slug') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
           </div>
 
           <div class="mb-3">
@@ -74,6 +75,21 @@
                 preslug = preslug.replace(/ /g,"-");
                 slug.value = preslug.toLowerCase();
             });
+
+            function previewImage(){
+              const image = document.querySelector('#image');
+              const imgPreview = document.querySelector('.img-preview');
+
+              imgPreview.style.display = 'block';
+
+              const ofReader = new FileReader();
+              ofReader.readAsDataURL(image.files[0]);
+
+              ofReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+              }
+
+            }
       </script>
 
 @endsection

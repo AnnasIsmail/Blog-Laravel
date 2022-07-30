@@ -1,8 +1,6 @@
 
 @extends('layout.layout')
-
 @section('container')
-
     <h1 class="mt-4 mb-4">{{ $name }}</h1>
 
     <div class="input-group mb-3 mt-3">
@@ -13,7 +11,11 @@
     <div class="container-posts mb-4">
         @foreach ($posts as $post)
             <div class="card h-100">
-                <img src="https://source.unsplash.com/450x450?{{ $post->category->name }}" class="card-img-top" alt="...">
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top max-h-32" alt="...">
+                @else
+                    <img src="https://source.unsplash.com/1200x800?{{ $post->category->name }}" class="card-img-top max-h-32" alt="...">
+                @endif
                 <div class="card-body">
                 <h4 class="card-title">
                     <a class="text-dark" href="/posts/{{ $post->slug }}">
